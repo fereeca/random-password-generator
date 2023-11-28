@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>YouShallNotPassword</title>
+    <link
+      rel="shortcut icon"
+      href="assets/confidentiality_user_private_auth_locked_secure_icon_179852.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <!-- ---password-box----- -->
+    <div class="password">
+      <div class="title">Random Password Generator</div>
+      <div class="display">
+        <input
+          type="text"
+          id="pass"
+          placeholder="Generate a Password"
+          readonly
+        />
+        <img
+          src="assets/copy.png"
+          width="50px"
+          alt="copy-logo"
+          onclick="copyPassword()"
+          name="copy"
+        />
+      </div>
+      <div class="generate">
+        <button onclick="generatePassword()" type="button"></button>
+      </div>
+    </div>
+    <!-- -----end of password-box------ -->
+
+    <!-- ----password-length-sliders----- -->
+    <div class="password-length">
+      Password Length: <span id="lengthValue">30</span>
+      <button onclick="decrement()">-</button>
+      <input
+        type="range"
+        min="3"
+        max="30"
+        value="1"
+        id="lengthSlider"
+        width="100%"
+      />
+      <button onclick="increment()">+</button>
+    </div>
+    <!-- ----end of password-length-sliders------- -->
+
+    <!-- --------category container-------- -->
+    <div class="category">
+      Character Used:
+      <div class="character-type">
+        <div><input type="checkbox" id="abc" checked /> abc</div>
+        <div><input type="checkbox" id="ABC" checked /> ABC</div>
+        <div><input type="checkbox" id="123" checked /> 123</div>
+        <div><input type="checkbox" id="#$%" checked /> #$%</div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
