@@ -13,57 +13,75 @@
     />
   </head>
   <body>
-    <!-- ---password-box----- -->
-    <div class="password">
-      <div class="title">Random Password Generator</div>
-      <div class="display">
-        <input
-          type="text"
-          id="pass"
-          placeholder="Generate a Password"
-          readonly
-        />
-        <img
-          src="assets/copy.png"
-          width="50px"
-          alt="copy-logo"
-          onclick="copyPassword()"
-          name="copy"
-        />
+    <div class="bg-img">
+      <!-- ---password-box----- -->
+      <div class="password">
+        <div class="title">Random Password Generator</div>
+        <div class="sub1">Need a Unique, Secure Password?</div>
+        <div class="sub2">Use Our Password Generator</div>
+        <div class="display">
+          <input
+            type="text"
+            id="pass"
+            placeholder="Generate a Password"
+            readonly
+          />
+          <img
+            src="/assets/reset_icon_246246.png"
+            alt="reset-logo"
+            onclick="resetGenerator()"
+            class="regenerate"
+          />
+          <img
+            src="assets/copy.png"
+            alt="copy-logo"
+            onclick="copyPassword()"
+            class="copy"
+          />
+        </div>
+        <div class="generate">
+          <button onclick="generatePassword()" type="button"></button>
+        </div>
       </div>
-      <div class="generate">
-        <button onclick="generatePassword()" type="button"></button>
+
+      <!-- -----end of password-box------ -->
+
+      <div id="passwordStrength">
+        <img id="passwordStrengthImg" src="" alt="Password Strength" />
+        <input id="passwordInput" />
       </div>
-    </div>
-    <!-- -----end of password-box------ -->
 
-    <!-- ----password-length-sliders----- -->
-    <div class="password-length">
-      Password Length: <span id="lengthValue">30</span>
-      <button onclick="decrement()">-</button>
-      <input
-        type="range"
-        min="3"
-        max="30"
-        value="1"
-        id="lengthSlider"
-        width="100%"
-      />
-      <button onclick="increment()">+</button>
-    </div>
-    <!-- ----end of password-length-sliders------- -->
-
-    <!-- --------category container-------- -->
-    <div class="category">
-      Character Used:
-      <div class="character-type">
-        <div><input type="checkbox" id="abc" checked /> abc</div>
-        <div><input type="checkbox" id="ABC" checked /> ABC</div>
-        <div><input type="checkbox" id="123" checked /> 123</div>
-        <div><input type="checkbox" id="#$%" checked /> #$%</div>
+      <!-- ----password-length-sliders----- -->
+      <div class="length-wrapper">
+        <div class="password-length">
+          Password Length:<span id="lengthValue">30</span>
+        </div>
+        <div class="slider">
+          <div class="min-max">
+            <button class="min-max-btn" onclick="decrement()">-</button>
+          </div>
+          <input type="range" min="3" max="30" value="1" id="lengthSlider" />
+          <div class="min-max">
+            <button class="min-max-btn" onclick="increment()">+</button>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <script src="js/script.js"></script>
+      <!-- ----end of password-length-sliders------- -->
+
+      <!-- --------category container-------- -->
+      <div class="category">
+        Character Used:
+        <div class="character-type">
+          <div><input type="checkbox" id="abc" checked /> abc</div>
+          <div><input type="checkbox" id="ABC" checked /> ABC</div>
+          <div><input type="checkbox" id="123" checked /> 123</div>
+          <div><input type="checkbox" id="#$%" checked /> #$%</div>
+        </div>
+      </div>
+      <!-- ---password strength---- -->
+
+      <script src="js/script.js"></script>
+    </div>
   </body>
 </html>

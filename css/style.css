@@ -1,5 +1,13 @@
 body {
-  background-color: bisque;
+  /* .bg-img {
+    background-image: url("/assets/bg14.jpg");
+    background-size: cover;
+
+    background-position: 10% 160%;
+    height: 100vh;
+  } */
+
+  background-color: antiquewhite;
 }
 
 .title {
@@ -7,15 +15,31 @@ body {
   justify-content: center;
 
   align-items: center;
-  padding-top: 150px;
+  padding-top: 50px;
 
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   line-height: 3rem;
   font-weight: 800;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
 }
 
 .password {
+  font-family: "MierB03", "Helvetica", "Arial", sans-serif;
+  .sub1 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .sub2 {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #08a510;
+  }
+
   .display {
     display: flex;
     align-items: center;
@@ -28,12 +52,19 @@ body {
     color: black;
     padding: 26px, 20px;
     justify-content: space-between;
+    gap: 1rem;
   }
 }
-.password .display img {
-  width: 20px;
+
+.copy {
+  width: 30px;
   cursor: pointer;
-  padding-right: 20px;
+  margin-right: 20px;
+}
+
+.regenerate {
+  width: 30px;
+  padding-left: 200px;
 }
 
 .password .display input {
@@ -45,15 +76,68 @@ body {
   width: 500px;
 }
 
-.password-length {
+.length-wrapper {
   display: flex;
   justify-content: center;
+  flex-direction: row;
   font-size: xx-large;
   margin-bottom: 50px;
+
+  .password-length {
+    margin-right: 70px;
+    display: flex;
+    gap: 2rem;
+  }
 }
-/* .password-length input [type="range"] {
-  width: 800px;
-} */
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+
+  .min-max {
+    .min-max-btn {
+      border-radius: 100%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: #ccc;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none; /* Prevent text selection */
+      border: 0px;
+      font-size: 30px;
+    }
+    .min-max-btn:hover {
+      background-color: #bbb;
+    }
+  }
+}
+
+#lengthSlider {
+  -webkit-appearance: none; /* Override default appearance */
+  appearance: none;
+  width: 550px;
+  height: 10px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+#lengthSlider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default appearance */
+  appearance: none;
+  width: 20px; /* Width of the thumb */
+  height: 20px; /* Height of the thumb */
+  border-radius: 50%; /* Makes it round */
+  background: #4caf50; /* Background color */
+  cursor: pointer;
+}
 
 .category {
   display: flex;
@@ -66,4 +150,18 @@ body {
     justify-content: row;
     gap: 3rem;
   }
+}
+
+#passwordInput {
+  display: none;
+}
+
+#passwordStrengthImg {
+  width: 300px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  margin-left: 820px;
+  padding-bottom: 50px;
+  height: 300px;
 }
