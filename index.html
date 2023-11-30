@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&family=Nothing+You+Could+Do&family=Reenie+Beanie&display=swap"
+      rel="stylesheet"
+    />
     <title>YouShallNotPassword</title>
     <link
       rel="shortcut icon"
@@ -13,7 +19,7 @@
     />
   </head>
   <body>
-    <div class="bg-img">
+    <div class="container">
       <!-- ---password-box----- -->
       <div class="password">
         <div class="title">Random Password Generator</div>
@@ -26,6 +32,7 @@
             placeholder="Generate a Password"
             readonly
           />
+
           <img
             src="/assets/reset_icon_246246.png"
             alt="reset-logo"
@@ -54,7 +61,7 @@
       <!-- ----password-length-sliders----- -->
       <div class="length-wrapper">
         <div class="password-length">
-          Password Length:<span id="lengthValue">30</span>
+          Length:<span id="lengthValue">30</span>
         </div>
         <div class="slider">
           <div class="min-max">
@@ -77,6 +84,9 @@
           <div><input type="checkbox" id="ABC" checked /> ABC</div>
           <div><input type="checkbox" id="123" checked /> 123</div>
           <div><input type="checkbox" id="#$%" checked /> #$%</div>
+          <div>
+            <input type="checkbox" id="passphrase" checked /> Passphrase
+          </div>
         </div>
       </div>
       <!-- ---password strength---- -->

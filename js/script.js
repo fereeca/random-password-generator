@@ -10,45 +10,112 @@ document.querySelectorAll("input[type=checkbox]").forEach((element) => {
 });
 passwordInput.addEventListener("input", updatePasswordStrength);
 
-function generatePassword(length, selectedCategories) {
+function generatePassword(length, selectedCategories, usePassphrase) {
   const categories = {
     lowercase: "abcdefghijklmnopqrstuvwxyz",
     uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     numbers: "0123456789",
     symbols: "!@#$%^&*()_+?><:{}[]",
   };
+  if (usePassphrase) {
+    const wordList = [
+      "apple",
+      "banana",
+      "orange",
+      "grape",
+      "strawberry",
+      "elephant",
+      "tiger",
+      "lion",
+      "zebra",
+      "giraffe",
+    ];
+    let passphrase = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * wordList.length);
+      passphrase += wordList[randomIndex];
+      if (i < length - 1) {
+        passphrase += " ";
+      }
+    }
+    return passphrase;
+  } else {
+    const selectedChars = Object.entries(selectedCategories)
+      .filter(([category, isSelected]) => isSelected)
+      .map(([category]) => categories[category])
+      .join("");
 
-  const selectedChars = Object.entries(selectedCategories)
-    .filter(([category, isSelected]) => isSelected)
-    .map(([category]) => categories[category])
-    .join("");
+    let password = "";
+    while (password.length < length) {
+      const randomIndex = Math.floor(Math.random() * selectedChars.length);
+      password += selectedChars[randomIndex];
+    }
 
-  let password = "";
-  while (password.length < length) {
-    const randomIndex = Math.floor(Math.random() * selectedChars.length);
-    password += selectedChars[randomIndex];
+    // Update password strength whenever a new password is generated
+    const strength = calculatePasswordStrength(password);
+    displayStrength(strength);
+
+    return password;
   }
-
-  // Update password strength whenever a new password is generated
-  const strength = calculatePasswordStrength(password);
-  displayStrength(strength);
-
-  return password;
 }
 
 function updateValue() {
   const length = parseInt(lengthSlider.value);
   lengthValue.textContent = length;
 
+  const passphraseCheckbox = document.getElementById("passphrase");
+  const passwordText = passwordBox.value;
+  const lowercaseCheckbox = document.getElementById("abc");
+  const uppercaseCheckbox = document.getElementById("ABC");
+  const numbersCheckbox = document.getElementById("123");
+  const symbolsCheckbox = document.getElementById("#$%");
+
+  [
+    lowercaseCheckbox,
+    uppercaseCheckbox,
+    numbersCheckbox,
+    symbolsCheckbox,
+  ].forEach((checkbox) => {
+    checkbox.addEventListener("click", function () {
+      if (passphraseCheckbox.checked) {
+        passphraseCheckbox.checked = false;
+        // Uncheck passphrase if other checkbox is clicked
+        updateValue(); // Update password when passphrase is unchecked
+      }
+    });
+  });
+
+  if (passphraseCheckbox.checked) {
+    // If passphrase checkbox is checked, uncheck other checkboxes
+    lowercaseCheckbox.checked = false;
+    uppercaseCheckbox.checked = false;
+    numbersCheckbox.checked = false;
+    symbolsCheckbox.checked = false;
+  }
+
   const selectedCategories = {
-    lowercase: document.getElementById("abc").checked,
-    uppercase: document.getElementById("ABC").checked,
-    numbers: document.getElementById("123").checked,
-    symbols: document.getElementById("#$%").checked,
+    lowercase: lowercaseCheckbox.checked,
+    uppercase: uppercaseCheckbox.checked,
+    numbers: numbersCheckbox.checked,
+    symbols: symbolsCheckbox.checked,
   };
 
-  const password = generatePassword(length, selectedCategories);
+  const usePassphrase = passphraseCheckbox.checked;
+
+  const password = generatePassword(length, selectedCategories, usePassphrase);
   passwordBox.value = password;
+
+  // const passphraseCheckbox = document.getElementById("passphrase");
+  // const passwordText = passwordBox.value;
+
+  if (passphraseCheckbox.checked) {
+    // Decrease font size if passphrase checkbox is checked
+    passwordBox.style.fontSize = "20px";
+    // Set the desired font size here
+  } else {
+    // Reset font size if passphrase checkbox is unchecked
+    passwordBox.style.fontSize = "30px"; // Set the default font size here
+  }
 }
 
 function updatePasswordStrength() {
@@ -74,6 +141,10 @@ function calculatePasswordStrength(password) {
 
   if (/[$&+,:;=?@#|'<>.^*()%!-]/.test(password)) {
     strength += 1;
+  }
+
+  if (password.includes(" ")) {
+    return calculatePassphraseStrength(password);
   }
 
   return strength;
