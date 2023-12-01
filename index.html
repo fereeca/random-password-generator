@@ -23,8 +23,8 @@
       <!-- ---password-box----- -->
       <div class="password">
         <div class="title">Random Password Generator</div>
-        <div class="sub1">Need a Unique, Secure Password?</div>
-        <div class="sub2">Use Our Password Generator</div>
+        <!-- <div class="sub1">Need a Unique, Secure Password?</div>
+        <div class="sub2">Use Our Password Generator</div> -->
         <div class="display">
           <input
             type="text"
@@ -33,13 +33,13 @@
             readonly
           />
 
-          <img
+          <img title="regenerate"
             src="/assets/reset_icon_246246.png"
             alt="reset-logo"
             onclick="resetGenerator()"
             class="regenerate"
           />
-          <img
+          <img title="copy"
             src="assets/copy.png"
             alt="copy-logo"
             onclick="copyPassword()"
@@ -53,45 +53,99 @@
 
       <!-- -----end of password-box------ -->
 
+      <!-- ----password-length-sliders----- -->
+      <div class="length-wrapper">
+        <div class="password-length">Length:</div>
+        <div class="slider">
+          <div class="min-max">
+            <button class="min-max-btn" onclick="decrement()"></button>
+          </div>
+          <input type="range" min="3" max="30" value="1" id="lengthSlider" />
+          <div class="min-max">
+            <button class="min-max-btn" onclick="increment()"></button>
+          </div>
+        </div>
+        <span id="lengthValue">30</span>
+      </div>
+      <!-- ----end of password-length-sliders------- -->
       <div id="passwordStrength">
         <img id="passwordStrengthImg" src="" alt="Password Strength" />
         <input id="passwordInput" />
       </div>
 
-      <!-- ----password-length-sliders----- -->
-      <div class="length-wrapper">
-        <div class="password-length">
-          Length:<span id="lengthValue">30</span>
-        </div>
-        <div class="slider">
-          <div class="min-max">
-            <button class="min-max-btn" onclick="decrement()">-</button>
-          </div>
-          <input type="range" min="3" max="30" value="1" id="lengthSlider" />
-          <div class="min-max">
-            <button class="min-max-btn" onclick="increment()">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ----end of password-length-sliders------- -->
-
       <!-- --------category container-------- -->
       <div class="category">
-        Character Used:
         <div class="character-type">
-          <div><input type="checkbox" id="abc" checked /> abc</div>
-          <div><input type="checkbox" id="ABC" checked /> ABC</div>
-          <div><input type="checkbox" id="123" checked /> 123</div>
-          <div><input type="checkbox" id="#$%" checked /> #$%</div>
-          <div>
-            <input type="checkbox" id="passphrase" checked /> Passphrase
+          <div class="card">
+            <div class="fxn">Lowercase</div>
+            <section>
+            <div class="btn-wrap">
+              <input type="checkbox" id="abc" checked  />
+            </div>
+            </section>
           </div>
         </div>
-      </div>
-      <!-- ---password strength---- -->
-
-      <script src="js/script.js"></script>
+        <div class="character-type">
+        <div class="card">
+          <div class="fxn">Uppercase</div>
+          <section>
+            <div class="btn-wrap">
+              <input type="checkbox" id="ABC" checked />
+            </div>
+          </section>
+        </div>
+        </div>
+        <div class="character-type">
+        <div class="card">
+          <div class="fxn">Numbers</div>
+          <section>
+            <div class="btn-wrap">
+              <input type="checkbox" id="123" checked />
+            </div>
+          </section>
+        </div>
+        </div>
+        <div class="character-type">
+        <div class="card">
+          <div class="fxn">Special Characters</div>
+          <section>
+            <div class="btn-wrap">
+              <input type="checkbox" id="#$%" checked />
+              
+            </div>
+          </section>
+        </div>
+        </div>
+        <div class="character-type">
+        <div class="card">
+          <div class="fxn">Pass Phrase</div>
+          <section>
+            <div class="btn-wrap">
+              <input type="checkbox" id="passphrase" checked />
+            </div>
+          </section>
+        </div>
+        </div>
+      
     </div>
+
+    <!-- <div><input type="checkbox" id="abc" checked /> Lowercase</div> -->
+    <!-- <div><input type="checkbox" id="ABC" checked /> Uppercase</div>
+    <div><input type="checkbox" id="123" checked /> Numbers</div>
+    <div><input type="checkbox" id="#$%" checked /> Special Characters</div>
+    <div><input type="checkbox" id="passphrase" checked /> Passphrase</div> -->
+    <!-- <section>
+            <div class="btn-wrap">
+              <input type="checkbox" name="checkbox1" id="abc" />
+            </div>
+          </section>
+          <input type="checkbox" name="checkbox2" id="abc" />
+          <input type="checkbox" name="checkbox3" id="abc" />
+          <input type="checkbox" name="checkbox4" id="abc" />
+        </div> -->
+
+    <!-- ---password strength---- -->
+
+    <script src="js/script.js"></script>
   </body>
 </html>

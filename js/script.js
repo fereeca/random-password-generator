@@ -17,6 +17,13 @@ function generatePassword(length, selectedCategories, usePassphrase) {
     numbers: "0123456789",
     symbols: "!@#$%^&*()_+?><:{}[]",
   };
+
+  selectedCategories = selectedCategories || {
+    lowercase: true,
+    uppercase: true,
+    numbers: true,
+    symbols: true,
+  };
   if (usePassphrase) {
     const wordList = [
       "apple",
@@ -35,7 +42,7 @@ function generatePassword(length, selectedCategories, usePassphrase) {
       const randomIndex = Math.floor(Math.random() * wordList.length);
       passphrase += wordList[randomIndex];
       if (i < length - 1) {
-        passphrase += " ";
+        passphrase += "-";
       }
     }
     return passphrase;
@@ -44,6 +51,14 @@ function generatePassword(length, selectedCategories, usePassphrase) {
       .filter(([category, isSelected]) => isSelected)
       .map(([category]) => categories[category])
       .join("");
+
+    const noCategoriesSelected = !Object.values(selectedCategories).some(
+      (isSelected) => isSelected
+    );
+
+    if (noCategoriesSelected) {
+      return "Generate Password";
+    }
 
     let password = "";
     while (password.length < length) {
@@ -105,6 +120,14 @@ function updateValue() {
   const password = generatePassword(length, selectedCategories, usePassphrase);
   passwordBox.value = password;
 
+  if (password === "Generate Password") {
+    passwordBox.value = password;
+    passwordBox.style.color = "gray";
+  } else {
+    passwordBox.value = password;
+    passwordBox.style.color = "black";
+  }
+
   // const passphraseCheckbox = document.getElementById("passphrase");
   // const passwordText = passwordBox.value;
 
@@ -114,7 +137,7 @@ function updateValue() {
     // Set the desired font size here
   } else {
     // Reset font size if passphrase checkbox is unchecked
-    passwordBox.style.fontSize = "30px"; // Set the default font size here
+    passwordBox.style.fontSize = "20px"; // Set the default font size here
   }
 }
 
