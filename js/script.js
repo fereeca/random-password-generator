@@ -1,3 +1,5 @@
+import myWords from "../words.json" assert { type: "json" };
+
 const passwordBox = document.getElementById("pass");
 const lengthSlider = document.getElementById("lengthSlider");
 const lengthValue = document.getElementById("lengthValue");
@@ -25,18 +27,20 @@ function generatePassword(length, selectedCategories, usePassphrase) {
     symbols: true,
   };
   if (usePassphrase) {
-    const wordList = [
-      "apple",
-      "banana",
-      "orange",
-      "grape",
-      "strawberry",
-      "elephant",
-      "tiger",
-      "lion",
-      "zebra",
-      "giraffe",
-    ];
+    // const wordList = [
+    //   "apple",
+    //   "banana",
+    //   "orange",
+    //   "grape",
+    //   "strawberry",
+    //   "elephant",
+    //   "tiger",
+    //   "lion",
+    //   "zebra",
+    //   "giraffe",
+    // ];
+
+    const wordList = myWords.words;
     let passphrase = "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * wordList.length);
@@ -143,8 +147,13 @@ function updateValue() {
 
 function updatePasswordStrength() {
   const password = passwordInput.value;
-  const strength = calculatePasswordStrength(password);
-  displayStrength(strength);
+  // let strength;
+  // if (usePassphrase) {
+  //   strength = calculatePassphraseStrength(password);
+  // } else {
+  //   strength = calculatePasswordStrength(password);
+  // }
+  // displayStrength(strength);
 }
 
 function calculatePasswordStrength(password) {
@@ -164,10 +173,6 @@ function calculatePasswordStrength(password) {
 
   if (/[$&+,:;=?@#|'<>.^*()%!-]/.test(password)) {
     strength += 1;
-  }
-
-  if (password.includes(" ")) {
-    return calculatePassphraseStrength(password);
   }
 
   return strength;
@@ -206,3 +211,35 @@ function resetGenerator() {
 window.onload = function () {
   updateValue();
 };
+
+// function calculatePassphraseStrength(passphrase) {
+//   console.log(passphrase);
+//   // Split passphrase into individual words
+//   const words = passphrase.split("-");
+
+//   // Define criteria for strength
+//   const minLengthPerWord = 4;
+//   const minWords = 4;
+
+//   // Check passphrase against criteria
+//   const hasMinWords = words.length >= minWords;
+//   const allWordsHaveMinLength = words.every(
+//     (word) => word.length >= minLengthPerWord
+//   );
+//   const hasNoRepeatedWords = new Set(words).size === words.length; // Check for repeated words
+
+//   // Determine strength category
+//   if (hasMinWords && allWordsHaveMinLength && hasNoRepeatedWords) {
+//     return 4; // Strong
+//   } else if (
+//     (hasMinWords && allWordsHaveMinLength) ||
+//     (hasMinWords && hasNoRepeatedWords) ||
+//     (allWordsHaveMinLength && hasNoRepeatedWords)
+//   ) {
+//     return 3; // Medium
+//   } else if (hasMinWords || allWordsHaveMinLength || hasNoRepeatedWords) {
+//     return 2; // Relatively Weak
+//   } else {
+//     return 0; // Weak
+//   }
+// }

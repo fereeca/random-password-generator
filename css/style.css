@@ -13,11 +13,7 @@
   height: 85vh;
   margin-left: 520px;
   margin-top: 100px;
-  background-color: rgb(161, 161, 161);
-}
-
-body {
-  background-color: rgb(165, 165, 129);
+  background-color: rgb(221, 211, 211);
 }
 
 .title {
@@ -29,6 +25,7 @@ body {
   font-size: 1.5rem;
   line-height: 1rem;
   font-weight: 800;
+
   /* padding-bottom: 30px; */
 }
 
@@ -169,8 +166,8 @@ body {
 /* Category styles */
 .category {
   font-family: "Montserrat";
-  background: #555;
-  color: #fef;
+  background: #e4d6d6;
+  color: rgb(0, 0, 0);
   font-weight: 200;
   display: grid;
   place-items: center;
@@ -186,7 +183,7 @@ body {
   display: flex;
   justify-content: space-between;
 
-  background: #444;
+  background: #b8b6b6;
   border-radius: 8px;
   flex-direction: column;
   margin-bottom: 10px;
