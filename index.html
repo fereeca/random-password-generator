@@ -19,10 +19,12 @@
     />
   </head>
   <body>
+    <div class="title">You Shall Not Password !!</div>
+
     <div class="container">
       <!-- ---password-box----- -->
       <div class="password">
-        <div class="title">Random Password Generator</div>
+     
         <!-- <div class="sub1">Need a Unique, Secure Password?</div>
         <div class="sub2">Use Our Password Generator</div> -->
         <div class="display">
@@ -34,15 +36,15 @@
           />
 
           <img 
-            src="/assets/reset_icon_246246.png"
+            src="assets/reset_icon_246246.png"
             alt="reset-logo"
-            onclick="resetGenerator()"
+            
             class="regenerate"
           />
           <img 
             src="assets/copy.png"
             alt="copy-logo"
-            onclick="copyPassword()"
+        
             class="copy"
           />
         </div>
@@ -77,7 +79,7 @@
       <div class="category">
         <div class="character-type">
           <div class="card">
-            <div class="fxn">Lowercase</div>
+            <div class="fxn">SMALL LETTERS</div>
             <section>
             <div class="btn-wrap">
               <input type="checkbox" id="abc" checked  />
@@ -87,30 +89,30 @@
         </div>
         <div class="character-type">
         <div class="card">
-          <div class="fxn">Uppercase</div>
+          <div class="fxn">CAPITAL LETTERS</div>
           <section>
             <div class="btn-wrap">
-              <input type="checkbox" id="ABC" checked />
+              <input type="checkbox" id="ABC"  />
             </div>
           </section>
         </div>
         </div>
         <div class="character-type">
         <div class="card">
-          <div class="fxn">Numbers</div>
+          <div class="fxn">NUMBERS</div>
           <section>
             <div class="btn-wrap">
-              <input type="checkbox" id="123" checked />
+              <input type="checkbox" id="123"  />
             </div>
           </section>
         </div>
         </div>
         <div class="character-type">
         <div class="card">
-          <div class="fxn">Special Characters</div>
+          <div class="fxn">SPECIAL CHARACTERS</div>
           <section>
             <div class="btn-wrap">
-              <input type="checkbox" id="#$%" checked />
+              <input type="checkbox" id="#$%"  />
               
             </div>
           </section>
@@ -118,10 +120,10 @@
         </div>
         <div class="character-type">
         <div class="card">
-          <div class="fxn">Pass Phrase</div>
+          <div class="fxn">PASS PHRASE</div>
           <section>
             <div class="btn-wrap">
-              <input type="checkbox" id="passphrase" checked />
+              <input type="checkbox" id="passphrase"  />
             </div>
           </section>
         </div>
@@ -129,20 +131,7 @@
       
     </div>
 
-    <!-- <div><input type="checkbox" id="abc" checked /> Lowercase</div> -->
-    <!-- <div><input type="checkbox" id="ABC" checked /> Uppercase</div>
-    <div><input type="checkbox" id="123" checked /> Numbers</div>
-    <div><input type="checkbox" id="#$%" checked /> Special Characters</div>
-    <div><input type="checkbox" id="passphrase" checked /> Passphrase</div> -->
-    <!-- <section>
-            <div class="btn-wrap">
-              <input type="checkbox" name="checkbox1" id="abc" />
-            </div>
-          </section>
-          <input type="checkbox" name="checkbox2" id="abc" />
-          <input type="checkbox" name="checkbox3" id="abc" />
-          <input type="checkbox" name="checkbox4" id="abc" />
-        </div> -->
+    
 
     <!-- ---password strength---- -->
 

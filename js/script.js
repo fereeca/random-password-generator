@@ -5,6 +5,8 @@ const lengthSlider = document.getElementById("lengthSlider");
 const lengthValue = document.getElementById("lengthValue");
 const passwordInput = document.getElementById("passwordInput");
 const passwordStrength = document.getElementById("passwordStrength");
+const regenerate = document.querySelector(".regenerate");
+const copy = document.querySelector(".copy");
 
 lengthSlider.addEventListener("input", updateValue);
 document.querySelectorAll("input[type=checkbox]").forEach((element) => {
@@ -27,19 +29,6 @@ function generatePassword(length, selectedCategories, usePassphrase) {
     symbols: true,
   };
   if (usePassphrase) {
-    // const wordList = [
-    //   "apple",
-    //   "banana",
-    //   "orange",
-    //   "grape",
-    //   "strawberry",
-    //   "elephant",
-    //   "tiger",
-    //   "lion",
-    //   "zebra",
-    //   "giraffe",
-    // ];
-
     const wordList = myWords.words;
     let passphrase = "";
     for (let i = 0; i < length; i++) {
@@ -70,7 +59,6 @@ function generatePassword(length, selectedCategories, usePassphrase) {
       password += selectedChars[randomIndex];
     }
 
-    // Update password strength whenever a new password is generated
     const strength = calculatePasswordStrength(password);
     displayStrength(strength);
 
@@ -98,14 +86,13 @@ function updateValue() {
     checkbox.addEventListener("click", function () {
       if (passphraseCheckbox.checked) {
         passphraseCheckbox.checked = false;
-        // Uncheck passphrase if other checkbox is clicked
-        updateValue(); // Update password when passphrase is unchecked
+
+        updateValue();
       }
     });
   });
 
   if (passphraseCheckbox.checked) {
-    // If passphrase checkbox is checked, uncheck other checkboxes
     lowercaseCheckbox.checked = false;
     uppercaseCheckbox.checked = false;
     numbersCheckbox.checked = false;
@@ -132,16 +119,10 @@ function updateValue() {
     passwordBox.style.color = "black";
   }
 
-  // const passphraseCheckbox = document.getElementById("passphrase");
-  // const passwordText = passwordBox.value;
-
   if (passphraseCheckbox.checked) {
-    // Decrease font size if passphrase checkbox is checked
-    passwordBox.style.fontSize = "20px";
-    // Set the desired font size here
+    passwordBox.style.fontSize = "24px";
   } else {
-    // Reset font size if passphrase checkbox is unchecked
-    passwordBox.style.fontSize = "20px"; // Set the default font size here
+    passwordBox.style.fontSize = "24px";
   }
 }
 
@@ -199,14 +180,14 @@ function displayStrength(strength) {
   document.getElementById("passwordStrengthImg").src = imagePath;
 }
 
-function copyPassword() {
+regenerate.addEventListener("click", () => {
+  updateValue();
+});
+
+copy.addEventListener("click", () => {
   passwordBox.select();
   navigator.clipboard.writeText(passwordBox.value);
-}
-
-function resetGenerator() {
-  updateValue();
-}
+});
 
 window.onload = function () {
   updateValue();
